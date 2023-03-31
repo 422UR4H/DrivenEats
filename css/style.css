@@ -2,6 +2,7 @@
 
 body {
     background-color: #E5E5E5;
+    font-family: 'Roboto', sans-serif;
 }
 
 h1 {
@@ -14,7 +15,6 @@ h1 {
 
 h2 {
     color: white;
-    font-family: 'Roboto', sans-serif;
     font-size: 18px;
     font-weight: 400;
     line-height: 21.09px;
@@ -26,6 +26,8 @@ h3 {
     font-size: 26px;
     font-weight: 400;
     line-height: 32.28px;
+
+    margin-left: 19px;
 }
 
 h4 {
@@ -44,14 +46,13 @@ h5 {
 
 h6 {
     color: white;
-    font-family: 'Roboto', sans-serif;
     font-size: 20px;
     font-weight: 400;
     line-height: 23.44px;
     text-align: center;
 }
 
-.items p {
+.section p {
     color: #A6A6A6;
     font-size: 15px;
     font-weight: 300;
@@ -72,20 +73,21 @@ h6 {
     position: fixed;
     left: 0px;
     top: 0px;
+    z-index: 2;
 }
 
 .desktop-content {
-    margin: 123px 0px 108px 19px;
+    margin: 123px 0px 108px 0px;
 }
 
-.options {
+.desktop-content > div {
     width: 100%;
 }
 
-.items {
+.section {
     width: 100%;
-    margin-top: 13px;
-    margin-bottom: 27px;
+    margin: 0px 0px 14px 3px;
+    padding: 13px 0px;
 
     display: flex;
 
@@ -96,21 +98,32 @@ div::-webkit-scrollbar {
     display: none;
 }
 
-.items img {
+.item {
+    font-family: 'Roboto', sans-serif;
+
+    background-color: white;
+    width: 172px;
+    margin-left: 16px;
+    padding: 18px 14px 14px 13px;
+    border-radius: 9px;
+    box-shadow: 0px 0px 10px -4px #00000040;
+
+    position: relative;
+}
+
+.item img:nth-child(1) {
     width: 144px;
     height: 87px;
     border-radius: 4px;
     margin-bottom: 8px;
 }
 
-.items > div {
-    font-family: 'Roboto', sans-serif;
+.item img:last-child {
+    position: absolute;
+    right: 6px;
+    bottom: 9px;
 
-    background-color: white;
-    width: 172px;
-    margin-right: 16px;
-    padding: 18px 14px 14px 13px;
-    border-radius: 9px;
+    display: none;
 }
 
 .footer {
@@ -121,16 +134,35 @@ div::-webkit-scrollbar {
     position: fixed;
     bottom: 0px;
     left: 0px;
+    z-index: 2;
 }
 
-.button {
+button {
     background-color: #CBCBCB;
     height: 61px;
     width: 364px;
     border-radius: 50px;
+    border-style: none;
     margin: 15px auto;
 
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.selected {
+    padding: 13px 9px 9px 8px;
+    border: 5px solid #32B72F;
+}
+
+.selected img:last-child {
+    display: inline;
+}
+
+.activeButton {
+    background-color: #32B72F;
+}
+
+.activeButton h6 {
+    font-weight: bold;
 }

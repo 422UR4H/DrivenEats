@@ -12,6 +12,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Righteous&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;1,100;1,300;1,400;1,500&display=swap" rel="stylesheet">
 
+    <link rel="script" href="script.js">
+
     <title>Document</title>
 
     <style>
@@ -29,83 +31,121 @@
     </div>
 
     <div class="desktop-content">
-        <div class="options">
+        <div>
             <h3>Primeiro, seu prato</h3>
-            <div class="items">
-                <div>
+            <div class="section burgers">
+                <div class="item" onclick="select('burgers', 1)">
                     <img src="./images/frango_yin_yang.png" alt="ícone do prato">
                     <h4>Frango Yin Yang</h4>
                     <p>Um pouco de batata,<br>um pouco de salada</p>
                     <h5>R$ 14,90</h5>
+                    <img src="./images/checked.png" alt="selecionado">
                 </div>
-                <div>
+                <div class="item" onclick="select('burgers', 2)">
                     <img src="./images/frango_yin_yang.png" alt="ícone do prato">
                     <h4>Frango Yin Yang</h4>
                     <p>Um pouco de batata,<br>um pouco de salada</p>
                     <h5>R$ 14,90</h5>
+                    <img src="./images/checked.png" alt="selecionado">
                 </div>
-                <div>
+                <div class="item" onclick="select('burgers', 3)">
                     <img src="./images/frango_yin_yang.png" alt="ícone do prato">
                     <h4>Frango Yin Yang</h4>
                     <p>Um pouco de batata,<br>um pouco de salada</p>
                     <h5>R$ 14,90</h5>
+                    <img src="./images/checked.png" alt="selecionado">
                 </div>
             </div>
         </div>
 
-        <div class="options">
+        <div>
             <h3>Agora, sua bebida</h3>
-            <div class="items">
-                <div>
+            <div class="section drinks">
+                <div class="item" onclick="select('drinks', 1)">
                     <img src="./images/coca-cola.png" alt="ícone da bebida">
                     <h4>Coquinha gelada</h4>
                     <p>Lata 350ml</p>
                     <h5>R$ 4,90</h5>
+                    <img src="./images/checked.png" alt="selecionado">
                 </div>
-                <div>
+                <div class="item" onclick="select('drinks', 2)">
                     <img src="./images/coca-cola.png" alt="ícone da bebida">
                     <h4>Coquinha gelada</h4>
                     <p>Lata 350ml</p>
                     <h5>R$ 4,90</h5>
+                    <img src="./images/checked.png" alt="selecionado">
                 </div>
-                <div>
+                <div class="item" onclick="select('drinks', 3)">
                     <img src="./images/coca-cola.png" alt="ícone da bebida">
                     <h4>Coquinha gelada</h4>
                     <p>Lata 350ml</p>
                     <h5>R$ 4,90</h5>
+                    <img src="./images/checked.png" alt="selecionado">
                 </div>
             </div>
         </div>
 
-        <div class="options">
+        <div>
             <h3>Por fim, sua sobremesa</h3>
-            <div class="items">
-                <div>
+            <div class="section sauces">
+                <div class="item" onclick="select('sauces', 1)">
                     <img src="./images/pudim.png" alt="ícone do prato">
                     <h4>Pudim</h4>
                     <p>Apenas pudim</p>
                     <h5>R$ 7,90</h5>
+                    <img src="./images/checked.png" alt="selecionado">
                 </div>
-                <div>
+                <div class="item" onclick="select('sauces', 2)">
                     <img src="./images/pudim.png" alt="ícone do prato">
                     <h4>Pudim</h4>
                     <p>Apenas pudim</p>
                     <h5>R$ 7,90</h5>
+                    <img src="./images/checked.png" alt="selecionado">
                 </div>
-                <div>
+                <div class="item" onclick="select('sauces', 3)">
                     <img src="./images/pudim.png" alt="ícone do prato">
                     <h4>Pudim</h4>
                     <p>Apenas pudim</p>
                     <h5>R$ 7,90</h5>
+                    <img src="./images/checked.png" alt="selecionado">
                 </div>
             </div>
         </div>
     </div>
 
     <div class="footer">
-        <div class="button">
+        <button disabled>
             <h6>Selecione os 3 itens<br>para fechar o pedido</h6>
-        </div>
+        </button>
     </div>
+
+    <script>
+        function select(section, num) {
+            const selected = document.querySelector(`.${section} .selected`);
+            
+            if (selected) {
+                selected.classList.remove('selected');
+            }
+
+            const item = document.querySelector(`.${section} div:nth-child(${num})`);
+            item.classList.add('selected');
+
+            activateButton();
+        }
+
+        function activateButton() {
+            const burgers = document.querySelector('.burgers .selected');
+            const drinks = document.querySelector('.drinks .selected');
+            const sauces = document.querySelector('.sauces .selected');
+
+            if (burgers && drinks && sauces) {
+                const button = document.querySelector('button');
+
+                button.disabled = false;
+                button.innerHTML = '<h6>Fechar pedido<h6>';
+                button.classList.add('activeButton');
+            }
+        }
+    </script>
 </body>
 </html>
