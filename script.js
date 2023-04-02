@@ -15,21 +15,42 @@ function authOrder() {
     const sauce = document.querySelector('.sauces .selected');
 
     if (burger && drink && sauce) {
-        activateButton();
+        activateButtonCloseOrder(true, "<h6>Fechar pedido</h6>");
     }
 }
 
-function activateButton() {
-    const button = document.querySelector('button');
+function activateButtonCloseOrder(bool, tag) {
+    const button = document.querySelector('.close-order');
+
+    button.disabled = !bool;
+    button.innerHTML = `${tag}`;
+    if (bool) {
+        button.classList.add('activeButton');
+    } else {
+        button.classList.remove('activeButton');
+    }
+}
+
+/*function activateButtonCloseOrder() {
+    const button = document.querySelector('.close-order');
 
     button.disabled = false;
     button.innerHTML = '<h6>Fechar pedido<h6>';
     button.classList.add('activeButton');
-}
+}*/
 
 function closeOrder() {
     const name = prompt('Qual o seu nome?');
+    if (!name) {
+        alert('É necessário colocar o nome');
+        return;
+    }
+
     const address = prompt('E o seu endereço?');
+    if (!address) {
+        alert('É necessário colocar o endereço');
+        return;
+    }
 
     const burger = document.querySelector('.burgers .selected h4').innerHTML;
     const drink = document.querySelector('.drinks .selected h4').innerHTML;
@@ -75,16 +96,18 @@ Endereço: ${address}` // uma pena não poder escrever "Molho" haha :'')
                 <h6>R$ ${formatPrice(priceTotal)}</h6>
             </div>
             <a href="${wppLink}">
-                <button class="push-order" onclick="pushOrder()">
+                <button class="push-order" onclick="pushOrder()" data-test="confirm-order-btn">
                     Tudo certo, pode pedir!
                 </button>
             </a>
-            <button class="cancel-order" onclick="cancelOrder()">
+            <button class="cancel-order" onclick="cancelOrder()" data-test="cancel-order-btn">
                 Cancelar
-            </button`
+            </button>`
+
 
     document.querySelector('.review-order').classList.toggle('hidden');
-    document.querySelector('.close-order').disabled = true;
+
+    activateButtonCloseOrder(false, "<p>Selecione os 3 itens<br>para fechar o pedido</p>");
 
 }
 
@@ -98,11 +121,11 @@ function formatPrice(price) {
 }
 
 function pushOrder() {
-    document.querySelector('.close-order').disabled = false;
+    activateButtonCloseOrder(true, "<h6>Fechar pedido</h6>");
 }
 
 function cancelOrder() {
     document.querySelector('.review-order').classList.toggle('hidden');
-    document.querySelector('.close-order').disabled = false;
+    activateButtonCloseOrder(true, "<h6>Fechar pedido</h6>");
 
 }
