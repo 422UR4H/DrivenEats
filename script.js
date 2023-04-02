@@ -64,12 +64,12 @@ function closeOrder() {
     // pelo visto, essa parte tem que ficar mal identada
     const order = 
 `Olá, gostaria de fazer o pedido:
-- Burger: ${burger}
+- Prato: ${burger}
 - Bebida: ${drink}
 - Sobremesa: ${sauce}
 Total: R$ ${formatPrice(priceTotal)}\n
 Nome: ${name}
-Endereço: ${address}` // uma pena não poder escrever "Molho" haha :'')
+Endereço: ${address}` // uma pena não poder escrever "Burger" nem "Molho" kkkkkrying  :'')
 
     const wppNum = "5524999780040";
     const wppLink = `https://wa.me/${wppNum}?text=${encodeURIComponent(order)}`;
